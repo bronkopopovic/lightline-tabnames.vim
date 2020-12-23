@@ -1,4 +1,6 @@
-### Tabnames for lightline.vim
+## Tabnames for lightline.vim
+
+#### Configuration
 
 Add the following to your `g:lightline` configuration:
 
@@ -23,3 +25,7 @@ You can also modify the default name for a tab with an empty buffer by setting:
 ```
 let g:lightlineNoname = '[Empty Tab]'
 ```
+
+#### Usage
+
+Use the `Tabname <name>` command to rename the current tab.
