@@ -1,0 +1,42 @@
+*lightline-tabnames.txt*	Tabnames for lightline
+
+Author: bronkopopovic (https://github.com/bronkopopovic)
+License: MIT License
+Repository: https://github.com/bronkopopovic/lightline-tabnames.vim
+Last Change: 2020/12/23.
+
+CONTENTS					*lightline-tabnames-contents*
+
+Introduction				|lightline-tabnames-introduction|
+Usage						|lightline-tabnames-usage|
+
+==============================================================================
+INTRODUCTION				*lightline-tabnames-introduction*
+
+The *lightline-tabnames* plugin extends lightline.vim by itchyny and adds a
+tab name functionality. New tabs will be initialized with default lightline
+behaviour. The command *Tabname <name>* adds a custom tab name to the current
+tab.
+Tab rearrangement does not work yet, since vim does not provide a feasible
+event for that.
+
+------------------------------------------------------------------------------
+USAGE						*lightline-tabnames-usage*
+
+Add the following to your *g:lightline* configuration:
+
+    'tab_component_function': {
+    \   'name': 'LightlineTabnamesRender',
+    \ }
+
+Then modify the *g.lightline.tab* configuration and e.g. replace "filename"
+with "name":
+
+    let g:lightline.tab = {
+      \ 'active': [ 'tabnum', 'name', 'modified' ],
+      \ 'inactive': [ 'tabnum', 'name', 'modified' ]
+    \ }
+
+You can also modify the default name for a tab with an empty buffer by setting:
+
+    let g:lightlineNoname = '[Empty Tab]'
