@@ -1,1 +1,25 @@
-Tabnames for lightline.vim
+### Tabnames for lightline.vim
+
+Add the following to your `g:lightline` configuration:
+
+```
+'tab_component_function': {
+\   'name': 'LightlineTabnamesRender',
+\ }
+```
+
+Then modify the `g.lightline.tab` configuration and e.g. replace "filename"
+with "name":
+
+```
+let g:lightline.tab = {
+  \ 'active': [ 'tabnum', 'name', 'modified' ],
+  \ 'inactive': [ 'tabnum', 'name', 'modified' ]
+\ }
+```
+
+You can also modify the default name for a tab with an empty buffer by setting:
+
+```
+let g:lightlineNoname = '[Empty Tab]'
+```
