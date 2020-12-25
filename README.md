@@ -10,7 +10,7 @@ Use a Plugin manager e.g. vim-plug:
 
 1. Add the following configuration to your `.vimrc`.
 
-```
+```vim
 Plug 'bronkopopovic/lightline-tabnames.vim'
 ```
 
@@ -20,25 +20,27 @@ Plug 'bronkopopovic/lightline-tabnames.vim'
 
 Add the following to your `g:lightline` configuration:
 
-```
-'tab_component_function': {
-\   'name': 'LightlineTabnamesRender',
-\ }
+```vim
+let g:lightline = {
+      \ 'tab_component_function': {
+      \   'name': 'LightlineTabnamesRender',
+      \ }
+      \ }
 ```
 
-Then modify the `g.lightline.tab` configuration and e.g. replace "filename"
-with "name":
+Then modify the `g.lightline.tab` configuration and e.g. replace `filename`
+with `name`:
 
-```
+```vim
 let g:lightline.tab = {
-  \ 'active': [ 'tabnum', 'name', 'modified' ],
-  \ 'inactive': [ 'tabnum', 'name', 'modified' ]
-\ }
+      \ 'active': [ 'tabnum', 'name', 'modified' ],
+      \ 'inactive': [ 'tabnum', 'name', 'modified' ]
+      \ }
 ```
 
 You can also modify the default name for a tab with an empty buffer by setting:
 
-```
+```vim
 let g:lightlineNoname = '[Empty Tab]'
 ```
 
