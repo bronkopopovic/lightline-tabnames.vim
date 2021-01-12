@@ -10,7 +10,7 @@ let g:lightlineNoname = get(g:, 'lightlineNoname', '[No Name]')
 augroup lightlineTabnames
     au VimEnter * call LightlineTabnamesInit()
     au TabNewEntered * call LightlineTabnamesInsert(tabpagenr())
-    au TabClosed * call LightlineTabnamesRemove(expand('<afile>'))
+    au TabClosed * call remove(g:lightlineTabnames, expand('<afile>') - 1)
 augroup END
 
 command! -nargs=1 Tabname call LightlineTabnamesRename(<f-args>)
@@ -19,14 +19,9 @@ command! -nargs=1 Tabname call LightlineTabnamesRename(<f-args>)
 function! LightlineTabnamesInit() abort
     let i = 0
     while i < tabpagenr('$')
-        call LightlineTabnamesAppend()
+        call add(g:lightlineTabnames, g:lightlineNone)
         let i += 1
     endwhile
-endfunction
-
-" Append an empty tab name to the global tab name array
-function! LightlineTabnamesAppend() abort
-    call add(g:lightlineTabnames, g:lightlineNone)
 endfunction
 
 " Add an empty tab name at a specified tab number
@@ -52,19 +47,9 @@ function! LightlineTabnamesInsert(tabnum) abort
     endif
 endfunction
 
-" Replace a tab name in the tab global tab name array
-function! LightlineTabnamesReplace(tabnum, name) abort
-    let g:lightlineTabnames[a:tabnum - 1] = a:name
-endfunction
-
-" Remove a tab name from the global tab name array
-function! LightlineTabnamesRemove(tabnum) abort
-    call remove(g:lightlineTabnames, a:tabnum - 1)
-endfunction
-
 " Rename the currently active tab
 function! LightlineTabnamesRename(name) abort
-    call LightlineTabnamesReplace(tabpagenr(), a:name)
+    let g:lightlineTabnames[tabpagenr() - 1] = a:name
     call lightline#toggle()
     call lightline#toggle()
 endfunction
